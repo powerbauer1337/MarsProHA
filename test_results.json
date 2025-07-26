@@ -1,0 +1,24 @@
+{
+  "mqtt": {
+    "dns_resolution": "False",
+    "network_connectivity": "False",
+    "ssl_certificates": "True"
+  },
+  "rest": {
+    "rest_health": "False",
+    "rest_auth": "False"
+  },
+  "discovery": {
+    "mdns_discovery": "None",
+    "network_scan": "None"
+  },
+  "bluetooth": {
+    "bt_adapter": "False",
+    "ble_scan": "False",
+    "gatt_services": "False"
+  },
+  "integration": {
+    "config_files": "True",
+    "certificates": "True"
+  }
+}

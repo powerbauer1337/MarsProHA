@@ -1,0 +1,26 @@
+{
+  "mqtt": {
+    "dns_resolution": "False",
+    "network_connectivity": "False",
+    "ssl_certificates": "True"
+  },
+  "rest": {
+    "rest_health": "False",
+    "rest_auth": "False"
+  },
+  "discovery": {
+    "network_scan": "None",
+    "local_network": "True"
+  },
+  "bluetooth": {
+    "bt_service": "False",
+    "bt_adapters": "False",
+    "ble_devices": "None",
+    "python_ble": "False"
+  },
+  "integration": {
+    "integration_files": "True",
+    "certificates": "True",
+    "dependencies": "True"
+  }
+}
