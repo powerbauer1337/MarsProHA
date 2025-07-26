@@ -1,4 +1,4 @@
-"""MarsProHA integration."""
+"""MarsProHA integration - Complete MarsPro device support."""
 from __future__ import annotations
 
 import logging
@@ -10,7 +10,7 @@ from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
-PLATFORMS: list[str] = ["light", "fan", "switch", "sensor"]
+PLATFORMS: list[str] = ["light", "fan", "switch", "sensor", "number", "camera"]
 
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:
     """Set up the MarsProHA component."""
@@ -29,7 +29,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     try:
         await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
-        _LOGGER.info("Successfully set up MarsProHA platforms")
+        _LOGGER.info("Successfully set up MarsProHA with %d platforms", len(PLATFORMS))
     except Exception as e:
         _LOGGER.error("Error setting up MarsProHA platforms: %s", e)
         return False
