@@ -1,4 +1,4 @@
-"""MarsProHA integration - Stable version."""
+"""MarsProHA integration - Minimal stable version."""
 from __future__ import annotations
 
 import logging
@@ -7,7 +7,7 @@ from homeassistant.core import HomeAssistant
 from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
-PLATFORMS: list[str] = ["light", "sensor", "switch"]
+PLATFORMS: list[str] = ["light"]
 
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:
     """Set up the MarsProHA component."""
@@ -22,15 +22,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data.setdefault(DOMAIN, {})
     hass.data[DOMAIN][entry.entry_id] = entry.data
     
-    # Validate required data
-    if not entry.data.get("email") or not entry.data.get("password"):
-        _LOGGER.error("Missing required configuration data")
+    # Simple validation
+    if not entry.data:
+        _LOGGER.error("No configuration data found")
         return False
 
     try:
-        # Forward setup to platforms
+        # Forward setup to platforms  
         await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
-        _LOGGER.info("Successfully set up MarsProHA integration")
+        _LOGGER.info("Successfully set up MarsProHA integration with %d platforms", len(PLATFORMS))
         return True
     except Exception as e:
         _LOGGER.error("Error setting up MarsProHA platforms: %s", e, exc_info=True)
