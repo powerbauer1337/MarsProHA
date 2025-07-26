@@ -10,7 +10,7 @@ from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
-PLATFORMS: list[str] = ["sensor", "light", "fan", "switch"]
+PLATFORMS: list[str] = ["light", "fan", "switch", "sensor"]
 
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:
     """Set up the MarsProHA component."""
@@ -27,14 +27,22 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         "password": entry.data.get("password"),
     }
 
-    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+    try:
+        await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+        _LOGGER.info("Successfully set up MarsProHA platforms")
+    except Exception as e:
+        _LOGGER.error("Error setting up MarsProHA platforms: %s", e)
+        return False
     
     return True
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload a config entry."""
-    unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
-    if unload_ok:
-        hass.data[DOMAIN].pop(entry.entry_id)
-
-    return unload_ok
+    try:
+        unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
+        if unload_ok:
+            hass.data[DOMAIN].pop(entry.entry_id)
+        return unload_ok
+    except Exception as e:
+        _LOGGER.error("Error unloading MarsProHA: %s", e)
+        return False
