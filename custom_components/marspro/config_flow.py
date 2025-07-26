@@ -17,7 +17,7 @@ _LOGGER = logging.getLogger(__name__)
 
 STEP_USER_DATA_SCHEMA = vol.Schema(
     {
-        vol.Required("username"): str,
+        vol.Required("email"): str,
         vol.Required("password"): str,
     }
 )
@@ -57,11 +57,11 @@ class MarsProConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, Any]:
     """Validate the user input allows us to connect."""
     
-    if not data["username"] or not data["password"]:
+    if not data["email"] or not data["password"]:
         raise InvalidAuth
 
     # Return info that you want to store in the config entry.
-    return {"title": f"MarsPro ({data['username']})"}
+    return {"title": f"MarsPro ({data['email']})"}
 
 class CannotConnect(HomeAssistantError):
     """Error to indicate we cannot connect."""

@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "data": {
-          "username": "Username",
+          "email": "Email",
           "password": "Password"
         },
         "description": "Enter your MarsPro account credentials to connect to your devices.",
