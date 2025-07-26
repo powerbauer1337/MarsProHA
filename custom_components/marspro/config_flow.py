@@ -57,11 +57,17 @@ class MarsProConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str, Any]:
     """Validate the user input allows us to connect."""
     
-    if not data["email"] or not data["password"]:
+    email = data.get("email", "").strip()
+    password = data.get("password", "").strip()
+    
+    if not email or not password:
+        raise InvalidAuth
+    
+    if "@" not in email:
         raise InvalidAuth
 
     # Return info that you want to store in the config entry.
-    return {"title": f"MarsPro ({data['email']})"}
+    return {"title": f"MarsPro ({email})"}
 
 class CannotConnect(HomeAssistantError):
     """Error to indicate we cannot connect."""
