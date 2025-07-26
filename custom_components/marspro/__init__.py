@@ -10,7 +10,7 @@ from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
-PLATFORMS: list[str] = ["sensor"]
+PLATFORMS: list[str] = ["sensor", "light", "fan", "switch"]
 
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:
     """Set up the MarsProHA component."""
@@ -19,10 +19,13 @@ async def async_setup(hass: HomeAssistant, config: dict) -> bool:
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Set up MarsProHA from a config entry."""
-    _LOGGER.debug("Setting up MarsProHA integration")
+    _LOGGER.info("Setting up MarsProHA integration for %s", entry.title)
     
     hass.data.setdefault(DOMAIN, {})
-    hass.data[DOMAIN][entry.entry_id] = entry.data
+    hass.data[DOMAIN][entry.entry_id] = {
+        "username": entry.data.get("username"),
+        "password": entry.data.get("password"),
+    }
 
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
     
