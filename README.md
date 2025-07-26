@@ -7,186 +7,97 @@
 
 ## 🌱 Overview
 
-This is a complete Home Assistant integration for MarsPro smart plant care devices, including LED grow lights, fans, sensors, and environmental controls. The integration uses secure MQTT communication with certificate-based authentication.
+This is a Home Assistant integration for MarsPro smart plant care devices. This version provides a working foundation for MarsPro device integration with Home Assistant's configuration UI.
+
+**Current Status**: Working integration with basic functionality. Ready for installation and further development.
 
 ## ✨ Features
 
-- **🔐 Secure MQTT Communication**: Certificate-based authentication with mutual TLS
-- **🌱 Complete Device Support**: LED grow lights, fans, sensors, switches, cameras, and advanced controls
-- **🔍 Automatic Discovery**: Device discovery via MQTT topics
-- **📊 Real-time Updates**: Live device status and sensor data
-- **⚙️ Easy Configuration**: User-friendly setup via Home Assistant UI
-- **🤖 Automation Ready**: Full Home Assistant automation support
+- **✅ Working Configuration Flow**: Proper integration setup via Home Assistant UI
+- **📊 Basic Sensor Support**: Test sensor for device status
+- **⚙️ Easy Installation**: Simple setup process
+- **🔧 Development Ready**: Foundation for adding MarsPro device features
+- **🤖 Home Assistant Compatible**: Follows HA integration best practices
 
 ## 🚀 Installation
 
 ### Method 1: HACS (Recommended)
 
 1. Open HACS in Home Assistant
-2. Go to "Integrations"
-3. Click the "+" button
-4. Search for "MarsPro"
-5. Install the integration
+2. Go to "Integrations" 
+3. Click the "⋮" menu → "Custom repositories"
+4. Add repository URL: `https://github.com/powerbauer1337/MarsProHA`
+5. Category: Integration
+6. Search for "MarsPro" and install
 
 ### Method 2: Manual Installation
 
-1. Copy the `custom_components/marspro` folder to your Home Assistant `custom_components` directory
-2. Restart Home Assistant
-3. Add the integration via UI: Settings → Devices & Services → Add Integration → MarsPro
+1. Download this repository
+2. Copy the `custom_components/marspro` folder to your Home Assistant `custom_components` directory
+3. Restart Home Assistant
+4. Add the integration via UI: Settings → Devices & Services → Add Integration → MarsPro
 
 ## ⚙️ Configuration
 
-### Prerequisites
-
-1. **MarsPro Account**: You need an active MarsPro account
-2. **Certificates**: The integration requires certificates for secure MQTT communication
-3. **Network Access**: Ensure your Home Assistant instance can reach `mars-pro.emqx.lgledsolutions.com:8883`
-
 ### Setup Steps
 
-1. **Add Integration**: Go to Settings → Devices & Services → Add Integration → MarsPro
-2. **Configure MQTT**: Enter your MQTT broker settings
-3. **Upload Certificates**: Upload the provided certificate files
-4. **Device Discovery**: The integration will automatically discover your MarsPro devices
+1. **Add Integration**: Go to Settings → Devices & Services → Add Integration
+2. **Search**: Type "MarsPro" in the search box
+3. **Configure**: Enter your MarsPro username and password
+4. **Complete**: The integration will create a test sensor to verify setup
 
-### Certificate Files
+### Current Functionality
 
-The integration requires these certificate files:
-- `ca-marspro.pem` - CA certificate
-- `emqx-marspro.pem` - Client certificate
-- `emqx-marspro.key` - Client private key
+This integration currently provides:
+- Basic configuration flow
+- Test sensor showing "Connected" status
+- Foundation for future MarsPro device support
 
-These certificates are provided in the `certs/` directory of this repository.
+### Future Development
 
-## 📱 Supported Devices
+The integration is designed to be extended with:
+- MQTT communication for MarsPro devices
+- Device discovery and control
+- Sensor data collection
+- Light and fan control
 
-### 🌞 LED Grow Lights
-- **Power Control**: On/off switching
-- **Brightness Control**: 0-100% dimming
-- **Spectrum Control**: Full spectrum adjustment
-- **Scheduling**: Automated light cycles
-- **Growth Modes**: Vegetative, flowering, and custom modes
+## 📱 Current Entities
 
-### 💨 Inline Fans
-- **Speed Control**: Variable speed settings
-- **Power Control**: On/off switching
-- **Temperature-based Control**: Automatic speed adjustment
-- **Humidity-based Control**: Smart ventilation
+### 📊 Sensors
+- `sensor.marspro_status` - Shows "Connected" status to verify integration is working
 
-### 📊 Environmental Sensors
-- **Temperature**: Real-time temperature monitoring
-- **Humidity**: Relative humidity tracking
-- **CO2 Levels**: Carbon dioxide concentration
-- **VPD**: Vapor Pressure Deficit calculation
-- **Light Intensity**: PPFD measurements
-- **Soil Sensors**: Moisture, pH, EC levels
+### 🔧 Planned Features
+- LED grow lights control
+- Environmental sensors (temperature, humidity, CO2)
+- Fan speed control
+- Power outlet switching
+- Camera integration
 
-### 🔌 Power Controls
-- **Smart Outlets**: Individual outlet control
-- **Power Monitoring**: Energy consumption tracking
-- **Timer Functions**: Scheduled on/off cycles
+## 🔧 Development
 
-### 📷 Cameras
-- **Plant Monitoring**: Growth tracking cameras
-- **Time-lapse**: Automated photo capture
-- **Remote Viewing**: Live camera feeds
+This integration is ready for developers to extend with MarsPro device functionality. The current structure provides:
 
-### 🎛️ Advanced Controls
-- **Calibration**: Sensor calibration settings
-- **Setpoints**: Target value configuration
-- **Alarms**: Threshold-based notifications
-- **Automation**: Complex control sequences
+- Proper Home Assistant integration pattern
+- Working configuration flow
+- Entity framework ready for sensors, lights, fans, etc.
+- Certificate support for MQTT communication (files included)
 
-## 🎯 Usage Examples
-
-### Basic Light Control
-```yaml
-# Turn on grow light at 75% brightness
-service: light.turn_on
-target:
-  entity_id: light.marspro_grow_light
-data:
-  brightness_pct: 75
-```
-
-### Fan Automation
-```yaml
-# Increase fan speed when temperature exceeds 26°C
-automation:
-  - alias: "Temperature-based fan control"
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.marspro_temperature
-        above: 26
-    action:
-      - service: fan.set_percentage
-        target:
-          entity_id: fan.marspro_inline_fan
-        data:
-          percentage: 80
-```
-
-### Environmental Monitoring
-```yaml
-# Alert when CO2 levels are low
-automation:
-  - alias: "CO2 level alert"
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.marspro_co2
-        below: 400
-    action:
-      - service: notify.mobile_app
-        data:
-          message: "CO2 levels are low in grow tent"
-```
-
-## 📋 Entity Types
-
-### Sensors
-- `sensor.marspro_temperature`
-- `sensor.marspro_humidity`
-- `sensor.marspro_co2`
-- `sensor.marspro_vpd`
-- `sensor.marspro_soil_moisture`
-- `sensor.marspro_soil_ph`
-- `sensor.marspro_soil_ec`
-- `sensor.marspro_light_intensity`
-
-### Lights
-- `light.marspro_grow_light`
-
-### Fans
-- `fan.marspro_inline_fan`
-
-### Switches
-- `switch.marspro_power_switch`
-- `switch.marspro_outlet_1`
-- `switch.marspro_outlet_2`
-
-### Cameras
-- `camera.marspro_plant_camera`
-
-### Numbers
-- `number.marspro_temperature_setpoint`
-- `number.marspro_humidity_setpoint`
-- `number.marspro_co2_setpoint`
+### Contributing
+Feel free to contribute by adding:
+- MarsPro API integration  
+- MQTT device communication
+- Additional entity types
+- Device discovery features
 
 ## 🔧 Troubleshooting
 
-### Common Issues
+### Installation Issues
 
-#### Connection Problems
-- **Check certificates**: Ensure all certificate files are valid and accessible
-- **Network connectivity**: Verify internet connection and firewall settings
-- **MQTT broker**: Confirm broker address and port are correct
+- **Integration not appearing**: Clear browser cache and restart Home Assistant
+- **Config flow errors**: Check Home Assistant logs for detailed error messages
+- **HACS installation**: Make sure you've added the repository URL correctly
 
-#### Device Discovery Issues
-- **MQTT topics**: Check if devices are publishing to correct topics
-- **Certificate authentication**: Verify certificate-based authentication is working
-- **Device firmware**: Ensure devices are running compatible firmware
-
-#### Debug Logging
+### Debug Logging
 Enable debug logging in Home Assistant:
 ```yaml
 # configuration.yaml
@@ -219,8 +130,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/your-username/marspro-ha-integration/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-username/marspro-ha-integration/discussions)
+- **Issues**: [GitHub Issues](https://github.com/powerbauer1337/MarsProHA/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/powerbauer1337/MarsProHA/discussions)
 - **Community**: [Home Assistant Community Forum](https://community.home-assistant.io/)
 
 ---
