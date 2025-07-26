@@ -1,0 +1,76 @@
+# Home Assistant
+*.db
+*.db-shm
+*.db-wal
+*.log
+*.log.1
+*.log.fault
+.secrets
+.storage/
+.cloud/
+.ios.conf
+.ip_authenticated.yaml
+.uuid
+home-assistant_v2.db*
+OZW_Log.txt
+pyozw.sqlite
+options.xml
+zwcfg_*.xml
+zwscene.xml
+automations.yaml
+scripts.yaml
+scenes.yaml
+secrets.yaml
+known_devices.yaml
+deps/
+www/
+tts/
+custom_components/
+!custom_components/marspro/
+!custom_components/marspro/**
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Testing
+.coverage
+.pytest_cache/
+.tox/
+htmlcov/
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Certificates (for security)
+certs/
+!certs/*.pem
+!certs/*.key
+!certs/README.md
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
