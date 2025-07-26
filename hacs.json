@@ -1,11 +1,6 @@
 {
-  "name": "MarsPro Integration",
-  "hacs": "1.32.0",
+  "name": "MarsPro",
   "render_readme": true,
   "homeassistant": "2024.1.0",
-  "zip_release": true,
-  "filename": "marspro-ha-integration.zip",
-  "country": ["DE", "US", "GB", "CA", "AU", "FR", "IT", "ES", "NL", "SE", "NO", "DK", "FI", "BE", "CH", "AT"],
-  "persistent_directory": false,
-  "iot_class": "Cloud Polling"
+  "iot_class": "Cloud Push"
 }
