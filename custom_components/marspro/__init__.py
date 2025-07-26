@@ -1,9 +1,10 @@
-"""MarsProHA integration - Minimal stable version."""
+"""MarsProHA integration - Fixed version with proper error handling."""
 from __future__ import annotations
 
 import logging
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.exceptions import ConfigEntryNotReady
 from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
@@ -22,10 +23,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data.setdefault(DOMAIN, {})
     hass.data[DOMAIN][entry.entry_id] = entry.data
     
-    # Simple validation
-    if not entry.data:
-        _LOGGER.error("No configuration data found")
-        return False
+    # Validate configuration data
+    if not entry.data or not entry.data.get("email"):
+        _LOGGER.error("Missing email in configuration data")
+        raise ConfigEntryNotReady("Missing required email configuration")
 
     try:
         # Forward setup to platforms  
@@ -36,7 +37,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         _LOGGER.error("Error setting up MarsProHA platforms: %s", e, exc_info=True)
         # Clean up on failure
         hass.data[DOMAIN].pop(entry.entry_id, None)
-        return False
+        raise ConfigEntryNotReady(f"Failed to setup MarsProHA: {e}") from e
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload a config entry."""
