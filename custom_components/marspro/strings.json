@@ -1,0 +1,104 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configure MarsPro",
+        "description": "Enter your MarsPro account credentials",
+        "data": {
+          "email": "Email Address",
+          "password": "Password",
+          "host": "API Host (optional)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate MarsPro",
+        "description": "Your credentials have expired. Please re-enter your MarsPro account details.",
+        "data": {
+          "email": "Email Address",
+          "password": "Password",
+          "host": "API Host (optional)"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid authentication credentials",
+      "unknown": "An unknown error occurred"
+    },
+    "abort": {
+      "reauth_successful": "Re-authentication was successful"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "MarsPro Options",
+        "description": "Configure MarsPro integration options",
+        "data": {
+          "update_interval": "Update Interval (seconds)"
+        }
+      }
+    }
+  },
+  "services": {
+    "set_spectrum": {
+      "name": "Set Light Spectrum",
+      "description": "Set the light spectrum for MarsPro grow lights",
+      "fields": {
+        "entity_id": {
+          "name": "Entity",
+          "description": "The light entity to control"
+        },
+        "red": {
+          "name": "Red",
+          "description": "Red component (0-255)"
+        },
+        "green": {
+          "name": "Green",
+          "description": "Green component (0-255)"
+        },
+        "blue": {
+          "name": "Blue",
+          "description": "Blue component (0-255)"
+        },
+        "white": {
+          "name": "White",
+          "description": "White component (0-255)"
+        }
+      }
+    },
+    "set_schedule": {
+      "name": "Set Schedule",
+      "description": "Set the schedule for MarsPro devices",
+      "fields": {
+        "entity_id": {
+          "name": "Entity",
+          "description": "The entity to schedule"
+        },
+        "schedule": {
+          "name": "Schedule",
+          "description": "Schedule configuration"
+        }
+      }
+    },
+    "calibrate_sensors": {
+      "name": "Calibrate Sensors",
+      "description": "Calibrate environmental sensors",
+      "fields": {
+        "entity_id": {
+          "name": "Entity",
+          "description": "The sensor entity to calibrate"
+        }
+      }
+    },
+    "reset_device": {
+      "name": "Reset Device",
+      "description": "Reset a MarsPro device to factory settings",
+      "fields": {
+        "entity_id": {
+          "name": "Entity",
+          "description": "The device entity to reset"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "domain": "marspro",
+  "name": "MarsPro",
+  "version": "1.0.0",
+  "documentation": "https://github.com/your-username/marspro-ha",
+  "issue_tracker": "https://github.com/your-username/marspro-ha/issues",
+  "dependencies": [],
+  "codeowners": ["@your-username"],
+  "requirements": ["paho-mqtt>=1.6.0", "aiofiles>=0.8.0"],
+  "config_flow": true,
+  "iot_class": "local_push",
+  "homeassistant": "2023.1.0"
+}
