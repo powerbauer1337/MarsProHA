@@ -1,0 +1,12 @@
+{
+  "domain": "marspro",
+  "name": "MarsPro",
+  "config_flow": true,
+  "documentation": "https://github.com/powerbauer1337/MarsProHA",
+  "issue_tracker": "https://github.com/powerbauer1337/MarsProHA/issues",
+  "requirements": [],
+  "codeowners": ["@powerbauer1337"],
+  "iot_class": "local_polling",
+  "integration_type": "device",
+  "version": "1.0.0"
+}
