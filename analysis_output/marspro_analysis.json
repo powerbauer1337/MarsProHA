@@ -1,0 +1,42 @@
+{
+  "app_info": {},
+  "api_analysis": {},
+  "integration_recommendations": {
+    "supported_devices": [
+      "MarsPro Grow Lights",
+      "MarsPro Environmental Sensors"
+    ],
+    "required_permissions": [
+      "INTERNET",
+      "ACCESS_NETWORK_STATE",
+      "BLUETOOTH"
+    ],
+    "api_base_url": "https://api.marspro.com/v1",
+    "authentication": "Bearer token or API key",
+    "polling_interval": 30,
+    "real_time_updates": "WebSocket support available"
+  },
+  "security_analysis": {},
+  "decompilation": {
+    "apktool": {
+      "status": "error",
+      "error": "Command 'java -jar apktool.jar d marspro-re\\apks\\marspro.apk -o analysis_output\\apktool -f' returned non-zero exit status 1."
+    },
+    "jadx": {
+      "status": "error",
+      "error": "Command 'jadx\\bin\\jadx.bat -d analysis_output\\jadx marspro-re\\apks\\marspro.apk' returned non-zero exit status 1."
+    },
+    "manifest": {},
+    "api_analysis": {}
+  },
+  "manifest": {
+    "error": "Manifest not found"
+  },
+  "api_endpoints": {
+    "error": "JADX source not found"
+  },
+  "security": {
+    "uses_cleartext": true,
+    "config": "default"
+  }
+}

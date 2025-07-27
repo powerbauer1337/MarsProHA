@@ -1,12 +1,18 @@
 {
   "domain": "marspro",
-  "name": "MarsPro",
+  "name": "MarsPro Smart Growing System",
   "config_flow": true,
   "documentation": "https://github.com/powerbauer1337/MarsProHA",
   "issue_tracker": "https://github.com/powerbauer1337/MarsProHA/issues",
-  "requirements": [],
+  "requirements": [
+    "paho-mqtt>=1.6.0"
+  ],
   "codeowners": ["@powerbauer1337"],
-  "iot_class": "local_polling",
-  "integration_type": "device",
-  "version": "1.0.0"
+  "iot_class": "cloud_push",
+  "integration_type": "hub",
+  "version": "2.0.0",
+  "loggers": ["custom_components.marspro"],
+  "bluetooth": false,
+  "after_dependencies": ["mqtt"],
+  "quality_scale": "silver"
 }

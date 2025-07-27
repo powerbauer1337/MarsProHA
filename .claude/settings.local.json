@@ -1,7 +1,23 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:apkpure.com)"
+      "WebFetch(domain:apkpure.com)",
+      "Bash(openssl x509:*)",
+      "Bash(openssl verify:*)",
+      "Bash(openssl rsa:*)",
+      "Bash(icacls:*)",
+      "Bash(ls:*)",
+      "Bash(unzip:*)",
+      "Bash(powershell:*)",
+      "Bash(python test_mqtt_optimized.py:*)",
+      "Bash(python test_mqtt_simple.py:*)",
+      "Bash(chmod:*)",
+      "Bash(cp:*)",
+      "Bash(find:*)",
+      "Bash(cat:*)",
+      "Bash(mkdir:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)"
     ],
     "deny": []
   }

@@ -1,5 +1,60 @@
-# Windows API Testing Requirements
+# Comprehensive MarsPro Integration Testing Requirements
+
+# Core testing framework
+pytest>=7.2.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+pytest-xdist>=3.2.0  # Parallel test execution
+pytest-timeout>=2.1.0
+
+# Home Assistant testing dependencies
+homeassistant>=2023.1.0
+aiohttp>=3.8.0
+voluptuous>=0.13.0
+
+# MQTT testing and mocking
 paho-mqtt>=1.6.0
+pytest-mqtt>=0.4.0
+aiomqtt>=1.0.0
+
+# HTTP and API testing
 requests>=2.28.0
+httpx>=0.24.0
+aioresponses>=0.7.4
+
+# File and async operations
 aiofiles>=22.1.0
+
+# Bluetooth testing (for device discovery)
 bleak>=0.19.0
+
+# Mock and simulation libraries
+responses>=0.23.0
+freezegun>=1.2.0
+factory-boy>=3.2.0
+
+# Performance testing
+pytest-benchmark>=4.0.0
+psutil>=5.9.0
+
+# Security testing
+cryptography>=3.4.8
+certifi>=2022.12.7
+
+# Coverage and reporting
+coverage>=7.0.0
+pytest-html>=3.1.0
+pytest-json-report>=1.5.0
+
+# Configuration and environment
+python-dotenv>=1.0.0
+pyyaml>=6.0
+
+# Type checking for tests
+mypy>=1.0.0
+types-requests>=2.28.0
+
+# Development and debugging
+debugpy>=1.6.0
+ipdb>=0.13.0
